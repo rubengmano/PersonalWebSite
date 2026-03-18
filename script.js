@@ -15,3 +15,22 @@ const obs = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.08 });
 reveals.forEach(el => obs.observe(el));
+
+// Experience calculation
+const startYear = 2020;
+const startMonth = 0; // January = 0
+const start = new Date(startYear, startMonth);
+const now = new Date();
+const years = Math.floor((now - start) / (1000 * 60 * 60 * 24 * 365.25));
+document.getElementById('years-experience').textContent = years + '+ Years Experience';
+
+async function handleSubmit(e) {
+  e.preventDefault();
+  await fetch('https://formspree.io/f/mgonrrvj', {
+    method: 'POST',
+    body: new FormData(e.target),
+    headers: { 'Accept': 'application/json' }
+  });
+  document.getElementById('ct-form').style.display = 'none';
+  document.getElementById('ct-success').style.display = 'flex';
+}
