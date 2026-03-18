@@ -23,6 +23,9 @@ const start = new Date(startYear, startMonth);
 const now = new Date();
 const years = Math.floor((now - start) / (1000 * 60 * 60 * 24 * 365.25));
 document.getElementById('years-experience').textContent = years + '+ Years Experience';
+const year = new Date().getFullYear();
+document.getElementById('actualyear').textContent = '© ' + year + ' Rúben Mano — All rights reserved';
+
 
 async function handleSubmit(e) {
   e.preventDefault();
