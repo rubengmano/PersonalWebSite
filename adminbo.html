@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin GitHub Login</title>
+  <style>
+    body {font-family: Arial, sans-serif; display: flex; align-items: center; justify-content: center; min-height: 100vh; margin:0; background:#f5f7fb;}
+    .card {background:#fff; border:1px solid #d8e1ec; border-radius:12px; box-shadow:0 10px 25px rgba(0,0,0,.08); padding:2rem; width:min(100%,420px);}
+    h1 {margin-top:0; font-size:1.35rem;}
+    button {display:block; width:100%; border:none; background:#24292f; color:#fff; border-radius:8px; padding:0.75rem; font-size:1rem; cursor:pointer;}
+    .message {margin-top:1rem; padding:0.75rem; border-radius:8px; background:#edf7ed; color:#0f5132; border:1px solid #c3e6cb;}
+    .message.error {background:#f8d7da;color:#842029;border:1px solid #f5c2c7;}
+    a {text-decoration:none;color:#0366d6;}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>GitHub Login</h1>
+    <p>Click below to login via GitHub OAuth. After authorization you will be redirected back with a success message.</p>
+    <button id="github-login-btn">Login with GitHub</button>
+    <div id="status" role="status" aria-live="polite" style="display:none;" class="message"></div>
+    <p style="font-size:0.85rem; margin-top:0.9rem;">Tip: add a GitHub OAuth app and set <code>client_id</code> in the script below. Uses <code>adminbo.html?code=...</code> check.</p>
+  </div>
+
+  <script>
+    const status = document.getElementById('status');
+    function setStatus(text, isError = false) {
+      status.textContent = text;
+      status.className = 'message' + (isError ? ' error' : '');
+      status.style.display = 'block';
+    }
+
+    function getQuery() {
+      return new URLSearchParams(window.location.search);
+    }
+
+    const query = getQuery();
+    if (query.has('code')) {
+      setStatus('GitHub login successful! Authorization code was received. (Code is masked for security.)');
+      // Optional: clear code from URL for cleanliness.
+      const cleanUrl = window.location.origin + window.location.pathname;
+      window.history.replaceState({}, document.title, cleanUrl);
+    } else if (query.has('error')) {
+      setStatus('GitHub login failed: ' + query.get('error_description') || query.get('error') || 'Unknown error', true);
+    }
+
+    document.getElementById('github-login-btn').addEventListener('click', () => {
+      const clientId = 'Ov23lipwStT1EypF1L58';
+      if (clientId === 'YOUR_GITHUB_CLIENT_ID') {
+        setStatus('Please replace `YOUR_GITHUB_CLIENT_ID` with your GitHub OAuth App client_id in this file.', true);
+        return;
+      }
+      const redirectUri = window.location.origin + window.location.pathname;
+      const state = Math.random().toString(36).slice(2);
+      const scope = 'read:user';
+      const url = `https://github.com/login/oauth/authorize?client_id=${encodeURIComponent(clientId)}&redirect_uri=${encodeURIComponent(redirectUri)}&scope=${encodeURIComponent(scope)}&state=${encodeURIComponent(state)}`;
+      localStorage.setItem('github_oauth_state', state);
+      window.location.href = url;
+    });
+  </script>
+</body>
+</html>
