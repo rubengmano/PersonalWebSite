@@ -24,7 +24,7 @@ labelToggle();
 // Hero chat: scripted replies, no AI behind them
 const REPLIES = {
   work: {
-    text: 'Four featured projects across aviation, telehealth, banking, the public sector and education. ',
+    text: 'Four featured projects across aviation, telehealth, the public sector and AI, plus more in banking and education. ',
     link: { href: '#work', label: 'Jump to the work ↓' }
   },
   lab: {
