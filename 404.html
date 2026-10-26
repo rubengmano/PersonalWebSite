@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page not found – Rúben Mano</title>
+  <meta name="robots" content="noindex">
+  <meta name="color-scheme" content="light dark">
+  <script>
+    // Same theme logic as the home page, so the 404 matches the visitor's choice
+    var t = null;
+    try { t = localStorage.getItem('theme'); } catch (e) {}
+    if (t !== 'light' && t !== 'dark') t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    document.documentElement.dataset.theme = t;
+  </script>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav wrap" aria-label="Main">
+      <a href="/" class="nav-logo">rúben mano</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero wrap" aria-labelledby="nf-title">
+      <div class="chat">
+        <p class="bubble bubble-visitor">Where did this page go?</p>
+        <div class="reply">
+          <img class="avatar" src="/ruben-mano.webp" alt="" width="433" height="577">
+          <div class="bubble bubble-ruben bubble-hero">
+            <p class="status">404 · Page not found</p>
+            <h1 id="nf-title">Nothing here.</h1>
+            <p class="proof">This page doesn't exist, or it moved. Everything I do is on the home page.</p>
+          </div>
+        </div>
+        <div class="chips">
+          <a class="chip" href="/#work">Show me your work</a>
+          <a class="chip chip-solid" href="/">Take me home</a>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

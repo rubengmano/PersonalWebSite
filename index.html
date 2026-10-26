@@ -6,7 +6,7 @@
   <title>Rúben Mano – OutSystems Expert &amp; AI Engineer, Portugal</title>
   <meta name="description" content="Rúben Mano is a low-code architect from Portugal, now building AI: OutSystems Expert Developer with 16 certifications, Agentic AI Specialist, and leading the AI Lab at Insol.">
   <meta name="author" content="Rúben Mano">
-  <meta name="color-scheme" content="light">
+  <meta name="color-scheme" content="light dark">
   <link rel="canonical" href="https://rubenmano.eu/">
   <meta property="og:type" content="profile">
   <meta property="og:site_name" content="Rúben Mano">
@@ -62,12 +62,13 @@
     }
   }
   </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="preload" href="fonts/figtree-latin.woff2" as="font" type="font/woff2" crossorigin>
   <script>
-    // Apply a saved theme before first paint, so there is no flash
-    try { var t = localStorage.getItem('theme'); if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t; } catch (e) {}
+    // Apply the saved theme, or the system one, before first paint, so there is no flash
+    var t = null;
+    try { t = localStorage.getItem('theme'); } catch (e) {}
+    if (t !== 'light' && t !== 'dark') t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    document.documentElement.dataset.theme = t;
   </script>
   <link rel="stylesheet" href="style.css">
   <link rel="icon" href="/favicon.ico" sizes="48x48">
@@ -306,7 +307,9 @@
             </div>
             <label>Subject<input name="subject" type="text"></label>
             <label>Message<textarea name="message" rows="5" required></textarea></label>
+            <input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
             <button class="btn" type="submit">Send message</button>
+            <p class="form-note">Your name, email and message are sent through Formspree and used only to reply to you. This site uses no cookies or analytics.</p>
           </form>
         </div>
       </div>
