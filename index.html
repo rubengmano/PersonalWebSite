@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rúben Mano – OutSystems Expert &amp; AI Engineer, Portugal</title>
+  <title>Rúben Mano – Low-code architect, now building AI</title>
   <meta name="description" content="Rúben Mano is a low-code architect from Portugal, now building AI: OutSystems Expert Developer with 16 certifications, Agentic AI Specialist, and leading the AI Lab at Insol.">
   <meta name="author" content="Rúben Mano">
-  <meta name="color-scheme" content="light">
+  <meta name="color-scheme" content="light dark">
   <link rel="canonical" href="https://rubenmano.eu/">
   <meta property="og:type" content="profile">
   <meta property="og:site_name" content="Rúben Mano">
@@ -26,7 +26,7 @@
     "@context": "https://schema.org",
     "@type": "ProfilePage",
     "url": "https://rubenmano.eu/",
-    "dateModified": "2026-10-15",
+    "dateModified": "2026-10-26",
     "mainEntity": {
       "@type": "Person",
       "@id": "https://rubenmano.eu/#person",
@@ -62,12 +62,13 @@
     }
   }
   </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="preload" href="fonts/figtree-latin.woff2" as="font" type="font/woff2" crossorigin>
   <script>
-    // Apply a saved theme before first paint, so there is no flash
-    try { var t = localStorage.getItem('theme'); if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t; } catch (e) {}
+    // Apply the saved theme, or the system one, before first paint, so there is no flash
+    var t = null;
+    try { t = localStorage.getItem('theme'); } catch (e) {}
+    if (t !== 'light' && t !== 'dark') t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    document.documentElement.dataset.theme = t;
   </script>
   <link rel="stylesheet" href="style.css">
   <link rel="icon" href="/favicon.ico" sizes="48x48">
@@ -136,7 +137,7 @@
             <p>HAW Hamburg. <a href="https://www.researchgate.net/publication/388646341_The_benefits_of_Virtual_Reality_in_Education" target="_blank" rel="noopener">Read it on ResearchGate ↗</a></p>
           </li>
           <li class="node">
-            <span class="node-kind">action · 2020</span>
+            <span class="node-kind">action · 2020 – Sep 2026</span>
             <h3>Enterprise apps on OutSystems</h3>
             <p>Joined askblue. Six years of projects, from banking to aviation.</p>
           </li>
@@ -163,7 +164,7 @@
           <li class="node">
             <span class="node-kind">action · May 2026</span>
             <h3>MSc Managing Information Systems</h3>
-            <p>Coimbra Business School. Thesis: "Organizational Strategies and Technological Competencies in the Future of Work: The Case of Portuguese Information Technology Companies".</p>
+            <p>Coimbra Business School. Thesis: "Organizational Strategies and Technological Competencies in the Future of Work: The Case of Portuguese Information Technology Companies". <a href="https://www.researchgate.net/publication/416880145_Organizational_Strategies_and_Technological_Competencies_in_the_Future_of_Work_The_Case_of_Portuguese_Information_Technology_Companies" target="_blank" rel="noopener">Read it on ResearchGate ↗</a></p>
           </li>
           <li class="node node-current">
             <span class="node-kind">action · Sep 2026 · now</span>
@@ -306,7 +307,9 @@
             </div>
             <label>Subject<input name="subject" type="text"></label>
             <label>Message<textarea name="message" rows="5" required></textarea></label>
+            <input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
             <button class="btn" type="submit">Send message</button>
+            <p class="form-note">Your name, email and message are sent through Formspree and used only to reply to you. This site uses no cookies or analytics.</p>
           </form>
         </div>
       </div>

@@ -2,9 +2,19 @@
 document.getElementById('actualyear').textContent = '© ' + new Date().getFullYear() + ' Rúben Mano';
 
 
-// Theme toggle: light by default until the visitor picks dark
+// Theme toggle: follows the system setting until the visitor picks one
 const root = document.documentElement;
 const toggle = document.getElementById('theme-toggle');
+const systemDark = window.matchMedia('(prefers-color-scheme: dark)');
+
+function savedTheme() {
+  try { return localStorage.getItem('theme'); } catch (e) { return null; }
+}
+systemDark.addEventListener('change', (e) => {
+  if (savedTheme()) return;
+  root.dataset.theme = e.matches ? 'dark' : 'light';
+  labelToggle();
+});
 
 function currentTheme() {
   return root.dataset.theme || 'light';
@@ -24,7 +34,7 @@ labelToggle();
 // Hero chat: scripted replies, no AI behind them
 const REPLIES = {
   work: {
-    text: 'Four featured projects across aviation, telehealth, banking, the public sector and education. ',
+    text: 'Four featured projects across aviation, telehealth, the public sector and AI, plus more in banking and education. ',
     link: { href: '#work', label: 'Jump to the work ↓' }
   },
   lab: {

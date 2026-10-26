@@ -1,3 +1,19 @@
+/* ---------- Fonts (self-hosted, Latin subset; both are variable fonts) ---------- */
+@font-face {
+  font-family: 'Figtree';
+  font-style: normal;
+  font-weight: 300 900;
+  font-display: swap;
+  src: url('fonts/figtree-latin.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 100 800;
+  font-display: swap;
+  src: url('fonts/jetbrains-mono-latin.woff2') format('woff2');
+}
+
 /* ---------- Tokens ---------- */
 :root {
   --bg: #f1f2f4;
@@ -23,7 +39,7 @@
   --gutter: clamp(16px, 5vw, 96px);
 }
 
-/* Dark: only when the visitor picks it with the toggle; light is the default */
+/* Dark: set from the visitor's toggle choice, or their system setting if they haven't picked one */
 :root[data-theme="dark"] {
   --bg: #0d0d0f;
   --bg-alt: #131317;
@@ -199,6 +215,8 @@ h3 { font-weight: 700; }
 .btn:hover { background: var(--accent-hover); }
 .btn[disabled] { opacity: 0.6; cursor: progress; }
 .form-success { padding: 14px 18px; border-radius: 10px; border: 1.5px solid var(--live); font-weight: 500; }
+.form-note { font-size: 13px; color: var(--muted); }
+.hp { display: none; }
 .form-error { margin-bottom: 16px; padding: 12px 16px; border-radius: 10px; border: 1.5px solid #c0392b; color: var(--ink); font-size: 15px; }
 
 /* ---------- Footer ---------- */
